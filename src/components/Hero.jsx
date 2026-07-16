@@ -43,7 +43,7 @@ export default function Hero() {
             </h1>
           </div>
           <p className="hidden md:block text-white text-xs uppercase font-bold tracking-[0.15em] max-w-sm leading-relaxed mt-6 mb-8">
-            INSPIRED BY THE SYMBOLS <br /> THAT DEFINE SFAX.
+            INSPIRED BY THE SYMBOLS <br /> THAT DEFINE SAKIA.
           </p>
           <Link
             href="/shop"
@@ -64,7 +64,7 @@ export default function Hero() {
             34.7401° N, 10.7601° E
           </div>
           <div className="text-white/90 text-[8px] md:text-[10px] font-bold tracking-[0.2em] select-none uppercase">
-            SFAX - TUNISIA
+            SAKIA - SFAX
           </div>
         </motion.div>
 

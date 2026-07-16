@@ -49,7 +49,7 @@ export default function About() {
 
             <div className="text-[#0a1628]/60 text-base leading-relaxed space-y-5 max-w-md mb-12">
               <p>
-                Sakitna is a streetwear brand rooted in the identity of Sfax,
+                Sakitna is a streetwear brand rooted in the identity of Sakia,
                 Tunisia — built on heritage, pride, and the quiet strength of a
                 city the world overlooks.
               </p>

@@ -10,29 +10,31 @@ export default async function AdminOrders() {
   const shipped = orders.filter(o => o.status === 'completed').length;
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8 md:space-y-10">
 
       {/* Header */}
-      <div className="border-b border-white/8 pb-8 flex items-end justify-between">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 mb-2">Management</p>
-          <h1 className="text-4xl font-black tracking-tight text-white uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.05em' }}>
-            Orders
-          </h1>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 mt-2">
-            {orders.length} total &nbsp;·&nbsp; {pending} pending &nbsp;·&nbsp; {shipped} shipped
-          </p>
-        </div>
-
-        {/* Summary chips */}
-        <div className="flex items-center gap-3">
-          <div className="border border-white/8 bg-[#07101f] px-5 py-3 text-center">
-            <p className="text-2xl font-black text-white">{pending}</p>
-            <p className="text-[8px] font-black uppercase tracking-[0.25em] text-slate-500 mt-0.5">Pending</p>
+      <div className="border-b border-white/8 pb-6 md:pb-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 mb-2">Management</p>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.05em' }}>
+              Orders
+            </h1>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 mt-2">
+              {orders.length} total &nbsp;·&nbsp; {pending} pending &nbsp;·&nbsp; {shipped} shipped
+            </p>
           </div>
-          <div className="border border-white/8 bg-[#07101f] px-5 py-3 text-center">
-            <p className="text-2xl font-black text-emerald-400">{shipped}</p>
-            <p className="text-[8px] font-black uppercase tracking-[0.25em] text-slate-500 mt-0.5">Shipped</p>
+
+          {/* Summary chips */}
+          <div className="flex items-center gap-3">
+            <div className="border border-white/8 bg-[#07101f] px-4 md:px-5 py-3 text-center">
+              <p className="text-xl md:text-2xl font-black text-white">{pending}</p>
+              <p className="text-[8px] font-black uppercase tracking-[0.25em] text-slate-500 mt-0.5">Pending</p>
+            </div>
+            <div className="border border-white/8 bg-[#07101f] px-4 md:px-5 py-3 text-center">
+              <p className="text-xl md:text-2xl font-black text-emerald-400">{shipped}</p>
+              <p className="text-[8px] font-black uppercase tracking-[0.25em] text-slate-500 mt-0.5">Shipped</p>
+            </div>
           </div>
         </div>
       </div>
@@ -59,16 +61,16 @@ export default async function AdminOrders() {
                 }`}
               >
                 {/* ── Top bar: order meta ── */}
-                <div className={`px-6 py-4 border-b flex flex-wrap items-center justify-between gap-4 ${
+                <div className={`px-4 md:px-6 py-4 border-b ${
                   isPending ? 'border-white/8' : isShipped ? 'border-emerald-500/10' : 'border-red-500/10'
                 }`}>
-                  {/* Left: number + name + phone */}
-                  <div className="flex items-center gap-5">
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-700 w-8">
+                  {/* Row 1: number + name + phone */}
+                  <div className="flex items-start gap-3 md:gap-5 mb-3">
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-700 mt-1 flex-shrink-0">
                       #{String(idx + 1).padStart(3, '0')}
                     </span>
-                    <div>
-                      <p className="text-white font-black text-base uppercase tracking-wide leading-tight">
+                    <div className="min-w-0">
+                      <p className="text-white font-black text-sm md:text-base uppercase tracking-wide leading-tight">
                         {order.firstName} {order.lastName}
                       </p>
                       <p className="flex items-center gap-1.5 text-slate-500 text-[10px] font-mono mt-0.5">
@@ -78,8 +80,8 @@ export default async function AdminOrders() {
                     </div>
                   </div>
 
-                  {/* Right: status + total + date */}
-                  <div className="flex items-center gap-5 flex-wrap">
+                  {/* Row 2: status + total + date + action */}
+                  <div className="flex flex-wrap items-center gap-2 md:gap-5 pl-6 md:pl-10">
                     {/* Status badge */}
                     <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 border ${
                       isShipped
@@ -92,7 +94,7 @@ export default async function AdminOrders() {
                     </span>
 
                     {/* Total */}
-                    <p className="text-white font-black text-lg">{toTND(order.totalAmount)}</p>
+                    <p className="text-white font-black text-base md:text-lg">{toTND(order.totalAmount)}</p>
 
                     {/* Date */}
                     <p className="text-slate-600 text-[9px] font-bold uppercase tracking-wider">
@@ -109,10 +111,10 @@ export default async function AdminOrders() {
                 </div>
 
                 {/* ── Body ── */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] divide-y md:divide-y-0 md:divide-x divide-white/5">
+                <div className="divide-y md:divide-y-0 md:grid md:grid-cols-[1fr_auto] md:divide-x divide-white/5">
 
                   {/* Items */}
-                  <div className="px-6 py-5">
+                  <div className="px-4 md:px-6 py-5">
                     <p className="text-[8px] font-black uppercase tracking-[0.3em] text-slate-600 mb-4 flex items-center gap-2">
                       <Package size={9} />
                       Items ({order.items.length})
@@ -121,14 +123,14 @@ export default async function AdminOrders() {
                       {order.items.map((item, i) => {
                         const productImg = item.product?.frontImage || item.product?.image || null;
                         return (
-                          <div key={i} className="flex items-center gap-4">
+                          <div key={i} className="flex items-center gap-3 md:gap-4">
                             {/* Image */}
                             {productImg ? (
-                              <div className="w-12 h-12 border border-white/8 overflow-hidden flex-shrink-0 bg-white/5">
+                              <div className="w-10 h-10 md:w-12 md:h-12 border border-white/8 overflow-hidden flex-shrink-0 bg-white/5">
                                 <img src={productImg} alt={item.title} className="w-full h-full object-cover" />
                               </div>
                             ) : (
-                              <div className="w-12 h-12 border border-white/8 bg-white/5 flex items-center justify-center flex-shrink-0">
+                              <div className="w-10 h-10 md:w-12 md:h-12 border border-white/8 bg-white/5 flex items-center justify-center flex-shrink-0">
                                 <span className="text-[7px] text-slate-700 uppercase font-black">IMG</span>
                               </div>
                             )}
@@ -163,7 +165,7 @@ export default async function AdminOrders() {
                   </div>
 
                   {/* Delivery address */}
-                  <div className="px-6 py-5 md:w-64 flex-shrink-0">
+                  <div className="px-4 md:px-6 py-5 md:w-64 flex-shrink-0">
                     <p className="text-[8px] font-black uppercase tracking-[0.3em] text-slate-600 mb-3 flex items-center gap-2">
                       <MapPin size={9} />
                       Ship To
